@@ -1,6 +1,6 @@
 ## Welcome to rejoin
 
-This is an experiment repo for AI Engie lab to implement [https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf]
+This is an experiment repo for AI Engie lab to implement [ReJOIN](https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf).
 
 ### Markdown
 
