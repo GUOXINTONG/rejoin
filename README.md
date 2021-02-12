@@ -1,9 +1,6 @@
 # ReJOIN
 
-An implementation of ReJOIN: a learned join ordering optimizer, as described in the following papers:
-
-* [Rejoin: Hands-Free Query Optimizer through Deep Learning - Ryan Marcus & Olga Papaemmanouil](https://www.cs.brandeis.edu/~olga/publications/HandsFreeCIDR19.pdf)
-* [Deep Reinforcement Learning for Joining Enumaration - Ryan Marcus & Olga Papaemmanouil](https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf)
+A Tune-exp for ReJOIN
 
 ## Some experiments
 - https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
