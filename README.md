@@ -1,33 +1,47 @@
-# ReJOIN
+# rejoin
 
-A Tune-exp for ReJOIN
+AI Engine lab experiment for  paper https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf
 
 
 ## Pre-requieste
-use venv in pycharm or use anaconda
 
-### library dependencis:
+### Pycharm set up
+
+    1. download pycharm free version on official website.
+
+    2. wsl2 are not fully support GUI, but we can follow this article to set up a usable version:
+    https://medium.com/@japheth.yates/the-complete-wsl2-gui-setup-2582828f4577#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImZkMjg1ZWQ0ZmViY2IxYWVhZmU3ODA0NjJiYzU2OWQyMzhjNTA2ZDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2MTI5OTM5MDAsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMTc3NjAzNzgyOTUwMDE2MDE1NiIsImVtYWlsIjoidGVycnlndW8wNjE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiVGVycnkgR3VvIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdqNVVwWkRUSTdPVDJfcWsxT1FFbkpLdlEtTHQ1OXJ1R0htMWtOUy1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IlRlcnJ5IiwiZmFtaWx5X25hbWUiOiJHdW8iLCJpYXQiOjE2MTI5OTQyMDAsImV4cCI6MTYxMjk5NzgwMCwianRpIjoiMzQzNjliYjgxMjRjYWY1ZDY5ZjU3MmZiMmVjMzkxNjQ4MWVjMzUwZCJ9.wNwXNkZ9QD3sweZt4hCzzcXA97Zd2k-DAog7hNe0hbd_XtwfaaHy6IoTOGLYI1i6Lti31QNLu7wZVBAxlZap06ETkaRjg8Esm0HgqSTPOHxbnqyq0JVE05HLAAUQmvbgDXaXwnAuR1YTa8ylxRjbvKoDRp3PtJ1x3j8RZZE6CIpgWoxP-H5UfE8ms3kTLlWlFzh6mg6ujnCOVldpzIxiod2Gi2kp0w-Vz1MFeITu2WQWZHgkzrW-icIsAVBcBnzl6h-IJPKCpo3JqxMJ9LE_lx-in9IFrRLehrWf_J96g6xZYIMpZR1B_ZEs9ei-Cg7C3fPZg-QKLTG__kS-zIt1fA
+    
+    3. once you can luanch X-server, you are able to excute pycharm.sh to open the IDE in your ubuntu server
+    
+
+After pycharm being successfully set up, you can git clone this repo to your local.(use venv in pycharm or use anaconda, for the project environment)
+
+### library dependencis attention:
+
 psycopg2: 
-a> excute: sudo apt install python3-dev libpq-dev
-b> excute: pip install psycopg2
+
+    a> excute: sudo apt install python3-dev libpq-dev
+    
+    b> excute: pip install psycopg2
 
 or:
-install binary version
+install binary version: psycopg2-binary
 
-### libraries alternative settings:
-numpy
-
-psycopg2-binary
-
-moz_sql_parser
-
-tensorflow-gpu==1.14.0
-
-tensorforce==0.4.3
-
-matplotlib
-
-Python=3.6
+#### libraries alternative settings:
+    numpy
+    
+    psycopg2-binary
+    
+    moz_sql_parser
+    
+    tensorflow-gpu==1.14.0
+    
+    tensorforce==0.4.3
+    
+    matplotlib
+    
+    Python=3.6
 
 ### postgres
 
@@ -67,11 +81,11 @@ Python=3.6
 
 from here, download join order benchmark database part is finished. 
 
-### download join order benchmark, query part
+### run join order benchmark, query part
 
-1> go to https://github.com/gregrahn/join-order-benchmark/tree/e6d4aba307a0f8849b681ccbd2ca04381d3d1731
-    
-    a> use 'sudo -u postgres psql' to start cli
+1>  Manually run two sql query 'schema.sql' and 'fkindexes.sql' (in the project, under jo-benchmark/)
+
+    a> use 'sudo -u postgres psql' to start postgres cli
     
     b> in postgres, switch to imdbload: \c imdbload
     
@@ -84,14 +98,10 @@ from here, download join order benchmark database part is finished.
 2> run queires2db.py(under porject directory)
 
 ### Run xamples
-After finished all the steps above, follow below 'Some Running examples'
+After finished all the steps above, follow below 'Some Running examples' to try training and other process.
 
 
-## Some experiments
-- https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
-
-
-## Some Running examples (optional)
+### Some Running examples (optional)
 
 - Train target group 4 for 200 episodes
 `sudo python3 main.py -e 200 -g 1 -tg 4 -se 100 -s ./saved_model/group4-200/`
@@ -106,3 +116,6 @@ Now the plots are in ./outputs folder (default) and the model in  ./saved_model/
 `sudo python3 main.py -e 200 -g 1 -tg 5 -se 100 -r ./saved_model/group4-200/ -s ./saved_model/group5-500/`
 
 - Execute a single query `python main.py --query 3a --episodes 150`
+
+## Some experiments
+- https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
