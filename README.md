@@ -1,23 +1,23 @@
 # rejoin
 
-AI Engine lab experiment for  paper https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf
+AI Engine lab experiment for  paper [Deep Reinforcement Learning for Join Order Enumeration](https://www.cs.brandeis.edu/~olga/publications/ReJOIN_aiDM18.pdf)
 
 
 ## Pre-requieste
 
 ### Pycharm set up
 
-    1. download pycharm free version on official website.
+- download pycharm free version on official website.
+  
+- wsl2 are not fully support GUI, but we can follow this article to set up a usable version:
+[gui set up](https://medium.com/@japheth.yates/the-complete-wsl2-gui-setup-2582828f4577#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImZkMjg1ZWQ0ZmViY2IxYWVhZmU3ODA0NjJiYzU2OWQyMzhjNTA2ZDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2MTI5OTM5MDAsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMTc3NjAzNzgyOTUwMDE2MDE1NiIsImVtYWlsIjoidGVycnlndW8wNjE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiVGVycnkgR3VvIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdqNVVwWkRUSTdPVDJfcWsxT1FFbkpLdlEtTHQ1OXJ1R0htMWtOUy1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IlRlcnJ5IiwiZmFtaWx5X25hbWUiOiJHdW8iLCJpYXQiOjE2MTI5OTQyMDAsImV4cCI6MTYxMjk5NzgwMCwianRpIjoiMzQzNjliYjgxMjRjYWY1ZDY5ZjU3MmZiMmVjMzkxNjQ4MWVjMzUwZCJ9.wNwXNkZ9QD3sweZt4hCzzcXA97Zd2k-DAog7hNe0hbd_XtwfaaHy6IoTOGLYI1i6Lti31QNLu7wZVBAxlZap06ETkaRjg8Esm0HgqSTPOHxbnqyq0JVE05HLAAUQmvbgDXaXwnAuR1YTa8ylxRjbvKoDRp3PtJ1x3j8RZZE6CIpgWoxP-H5UfE8ms3kTLlWlFzh6mg6ujnCOVldpzIxiod2Gi2kp0w-Vz1MFeITu2WQWZHgkzrW-icIsAVBcBnzl6h-IJPKCpo3JqxMJ9LE_lx-in9IFrRLehrWf_J96g6xZYIMpZR1B_ZEs9ei-Cg7C3fPZg-QKLTG__kS-zIt1fA)
 
-    2. wsl2 are not fully support GUI, but we can follow this article to set up a usable version:
-    https://medium.com/@japheth.yates/the-complete-wsl2-gui-setup-2582828f4577#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImZkMjg1ZWQ0ZmViY2IxYWVhZmU3ODA0NjJiYzU2OWQyMzhjNTA2ZDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2MTI5OTM5MDAsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMTc3NjAzNzgyOTUwMDE2MDE1NiIsImVtYWlsIjoidGVycnlndW8wNjE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiVGVycnkgR3VvIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdqNVVwWkRUSTdPVDJfcWsxT1FFbkpLdlEtTHQ1OXJ1R0htMWtOUy1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IlRlcnJ5IiwiZmFtaWx5X25hbWUiOiJHdW8iLCJpYXQiOjE2MTI5OTQyMDAsImV4cCI6MTYxMjk5NzgwMCwianRpIjoiMzQzNjliYjgxMjRjYWY1ZDY5ZjU3MmZiMmVjMzkxNjQ4MWVjMzUwZCJ9.wNwXNkZ9QD3sweZt4hCzzcXA97Zd2k-DAog7hNe0hbd_XtwfaaHy6IoTOGLYI1i6Lti31QNLu7wZVBAxlZap06ETkaRjg8Esm0HgqSTPOHxbnqyq0JVE05HLAAUQmvbgDXaXwnAuR1YTa8ylxRjbvKoDRp3PtJ1x3j8RZZE6CIpgWoxP-H5UfE8ms3kTLlWlFzh6mg6ujnCOVldpzIxiod2Gi2kp0w-Vz1MFeITu2WQWZHgkzrW-icIsAVBcBnzl6h-IJPKCpo3JqxMJ9LE_lx-in9IFrRLehrWf_J96g6xZYIMpZR1B_ZEs9ei-Cg7C3fPZg-QKLTG__kS-zIt1fA
-    
-    3. once you can luanch X-server, you are able to excute pycharm.sh to open the IDE in your ubuntu server
+- once you can luanch X-server, you are able to excute pycharm.sh to open the IDE in your ubuntu server
     
 
 After pycharm being successfully set up, you can git clone this repo to your local.(use venv in pycharm or use anaconda, for the project environment)
 
-### library dependencis attention:
+### Library dependencis attention:
 
 psycopg2: 
 
@@ -28,7 +28,7 @@ psycopg2:
 or:
 install binary version: psycopg2-binary
 
-#### libraries alternative settings:
+#### Libraries alternative settings:
     numpy
     
     psycopg2-binary
@@ -43,11 +43,11 @@ install binary version: psycopg2-binary
     
     Python=3.6
 
-### postgres
+### Postgres
 
-1> download postgres into ubuntu system follow this: https://www.postgresql.org/download/linux/ubuntu/
+1> download postgres into ubuntu system follow this: [part1](https://www.postgresql.org/download/linux/ubuntu/)
 
-2> access to https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5
+2> access to [part2](https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5)
     
     a> sudo service postgresql status   //to check status
     
@@ -55,11 +55,13 @@ install binary version: psycopg2-binary
     
     c> sudo service postgresql status   //double check status is 'online' now
 
-### download join order benchmark, datbase part
+### Download join order benchmark, datbase part
 
-1>  git clone https://github.com/gregrahn/join-order-benchmark.git to your local ubuntu system
+1>  git clone [this repo](https://github.com/gregrahn/join-order-benchmark.git) to your local ubuntu system
+    
+(you may need to set up ssh key in your local linux system to use your github account, one reference: [ssh key generation](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key))
 
-2>  access to https://github.com/gregrahn/join-order-benchmark/tree/e6d4aba307a0f8849b681ccbd2ca04381d3d1731 to follow section 'Step-by-step instructions'
+2>  access to [this page](https://github.com/gregrahn/join-order-benchmark/tree/e6d4aba307a0f8849b681ccbd2ca04381d3d1731) to follow section 'Step-by-step instructions'
     
     a> do 1>download *gz files
     
@@ -77,11 +79,9 @@ install binary version: psycopg2-binary
             1>here change PATH_TO_GZ_FILES to the absolute path of your downloaded gz files
             2>change username and password to your own 
             3>change hostname to 'localhost'
-        wait for processing...................(take a while)
+**The last step will take a loooong time, wait for processing...** after this, download join order benchmark database part is finished. 
 
-from here, download join order benchmark database part is finished. 
-
-### run join order benchmark, query part
+### Run join order benchmark, query part
 
 1>  Manually run two sql query 'schema.sql' and 'fkindexes.sql' (in the project, under jo-benchmark/)
 
