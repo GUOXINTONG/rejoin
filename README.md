@@ -81,22 +81,17 @@ from here, download join order benchmark database part is finished.
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
+2> run queires2db.py(under porject directory)
 
-
-
-
-
-
-
+### Run xamples
+After finished all the steps above, follow below 'Some Running examples'
 
 
 ## Some experiments
 - https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
 
 
-
-
-## Some Running examples
+## Some Running examples (optional)
 
 - Train target group 4 for 200 episodes
 `sudo python3 main.py -e 200 -g 1 -tg 4 -se 100 -s ./saved_model/group4-200/`
