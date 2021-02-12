@@ -35,7 +35,7 @@ cursor.execute(q)
 cursor.close()
 db.conn.commit()
 
-dataset = "join-order-benchmark/queries"
+dataset = "jo-benchmark/queries"
 cwd = os.getcwd()
 files = os.listdir(os.path.join(cwd, *dataset.split("/")))
 
