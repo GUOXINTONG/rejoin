@@ -32,6 +32,7 @@ class Database:
         # self.pp.pprint(self.relations)
 
     def connect(self):
+        # local postgres connection, need to configure in config/database.py
         try:
             conn_string = (
                 "host="
