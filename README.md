@@ -111,6 +111,7 @@ install binary version: psycopg2-binary
 
     some hints for postgres:
       to delete a table: drop table table_name
+      to assign supruser to your own account: ALTER USER youruser WITH SUPERUSER;
       
 
 ### Run examples
