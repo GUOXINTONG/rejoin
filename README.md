@@ -16,6 +16,7 @@ AI Engine lab experiment for  paper [Deep Reinforcement Learning for Join Order 
     
 
 After pycharm being successfully set up, you can git clone this repo to your local.(use venv in pycharm or use anaconda, for the project environment)
+(ps: feel free to use Pycharm in Windows as alternative)
 
 ### Library dependencis attention:
 
@@ -93,6 +94,7 @@ install binary version: psycopg2-binary
     c> use \dt to make sure you have datasets in it.
     
     d> open schema.sql, copy and paste to excute the sql sentences in postgres(your linux)
+    (* Those sql sentences should already been down, try to excute one of them too see if its exist)
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
