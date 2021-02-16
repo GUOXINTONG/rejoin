@@ -43,6 +43,8 @@ install binary version: psycopg2-binary
     matplotlib
     
     Python=3.6
+    
+    mo-future=2.46
 
 ### Postgres
 
