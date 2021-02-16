@@ -95,12 +95,12 @@ install binary version: psycopg2-binary
     
     d> open schema.sql, copy and paste to excute the sql sentences in postgres(your linux)
     (* All of those sql sentences in this file should already been done by previous steps, we only need add 'movie_info_idx':)
-    'CREATE TABLE movie_info_idx (
-    id integer NOT NULL PRIMARY KEY,
-    movie_id integer NOT NULL,
-    info_type_id integer NOT NULL,
-    info text NOT NULL,
-    note text
+'CREATE TABLE movie_info_idx (
+id integer NOT NULL PRIMARY KEY,
+movie_id integer NOT NULL,
+info_type_id integer NOT NULL,
+info text NOT NULL,
+note text
 );'
     
     e> open fkindexes.sql, excute the sql sentences in postgres
