@@ -29,12 +29,10 @@ psycopg2:
 or:
 install binary version: psycopg2-binary
 
-#### Libraries alternative settings:
+#### Libraries suggested settings:
     numpy
     
-    psycopg2-binary
-    
-    moz_sql_parser
+    psycopg2
     
     tensorflow-gpu==1.14.0
     
@@ -44,7 +42,10 @@ install binary version: psycopg2-binary
     
     Python=3.6
     
-    mo-future=2.46
+    mo-future=2.46 
+    
+    moz-sql-parser==4.18
+    
 
 ### Postgres
 
@@ -111,7 +112,7 @@ install binary version: psycopg2-binary
 
     some hints for postgres:
       to delete a table: drop table table_name
-      to assign supruser to your own account: ALTER USER youruser WITH SUPERUSER;
+      you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
       
 
 ### Run examples
