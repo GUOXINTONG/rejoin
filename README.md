@@ -67,7 +67,8 @@ install binary version: psycopg2-binary
     
     b> skip 2>, directly go to https://github.com/alberanid/imdbpy, follow 'Installation' section
     
-    c> before 3>, create a postgres account, follow https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5, use: sudo -u postgres createuser <your_username>
+    c> before 3>, create a postgres account, follow https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5, use: sudo -u postgres createuser <your_username>  
+    make sure to run the command in the directory that postgres has access to like /tmp
     (ps: need to lift the access ability, can be done later, use postgres: sudo -u postgres createdb imdbload)
     
     d> before 4>, go to https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5, 
