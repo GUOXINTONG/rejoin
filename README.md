@@ -94,7 +94,7 @@ install binary version: psycopg2-binary
     c> use \dt to make sure you have datasets in it.
     
     d> open schema.sql, copy and paste to excute the sql sentences in postgres(your linux)
-    (* Those sql sentences should already been down, try to excute one of them too see if its exist)
+    (* Those sql sentences in this file should already been done by previous steps, but double check to excute one of them too see if its exist)
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
