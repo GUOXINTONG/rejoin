@@ -97,7 +97,7 @@ install binary version: psycopg2-binary
 
 2> run queires2db.py(under porject directory)
 
-### Run xamples
+### Run examples
 After finished all the steps above, follow below 'Some Running examples' to try training and other process.
 
 
