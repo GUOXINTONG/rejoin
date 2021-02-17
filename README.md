@@ -96,7 +96,7 @@ install binary version: psycopg2-binary
     
     c> use \dt to make sure you have datasets in it.
     
-    d> open schema.sql, copy and paste to excute the sql sentences in postgres(your linux)
+    d> open schema.sql, copy and paste to excute the sql sentences in postgres(your linux, imdbload environment)
     * All of those sql sentences in this file should already been done by previous steps, we only need add 'movie_info_idx':
     'CREATE TABLE movie_info_idx (
     id integer NOT NULL PRIMARY KEY,
