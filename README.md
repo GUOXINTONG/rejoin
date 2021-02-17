@@ -116,6 +116,8 @@ install binary version: psycopg2-binary
       
 ### Test on TPCH data set
 
+follow https://github.com/gregrahn/tpch-kit
+
 ### Run examples
 After finished all the steps above, follow below 'Some Running examples' to try training and other process.
 
