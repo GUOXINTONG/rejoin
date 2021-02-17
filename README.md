@@ -18,7 +18,7 @@ AI Engine lab experiment for  paper [Deep Reinforcement Learning for Join Order 
 After pycharm being successfully set up, you can git clone this repo to your local.(use venv in pycharm or use anaconda, for the project environment)
 (ps: feel free to use Pycharm in Windows as alternative)
 
-### Library dependencis attention:
+# ***Library dependencis attention:***
 
 psycopg2: 
 
