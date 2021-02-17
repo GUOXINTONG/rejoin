@@ -110,10 +110,11 @@ install binary version: psycopg2-binary
 
 2> run queires2db.py(under porject directory) to get table 'queries'
 
+    a> change configuration in /home/PycharmProjects/ReJOIN/config/database.py to your own account
+    b> you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
     some hints for postgres:
       to delete a table: drop table table_name
-      you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
-
+     
 3> run main.py to make sure the rejoin repo is working.
 
 ### Re-product the experiment section:
