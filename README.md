@@ -114,6 +114,7 @@ install binary version: psycopg2-binary
       to delete a table: drop table table_name
       you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
       
+### Test on TPCH data set
 
 ### Run examples
 After finished all the steps above, follow below 'Some Running examples' to try training and other process.
