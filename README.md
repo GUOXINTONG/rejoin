@@ -18,23 +18,13 @@ AI Engine lab experiment for  paper [Deep Reinforcement Learning for Join Order 
 After pycharm being successfully set up, you can git clone this repo to your local.(use venv in pycharm or use anaconda, for the project environment)
 (ps: feel free to use Pycharm in Windows as alternative)
 
-# ***Library dependencis attention:***
+## ***Library dependencis attention:***
 
-psycopg2: 
-
-    a> excute: sudo apt install python3-dev libpq-dev
-    
-    b> excute: pip install psycopg2
-
-or:
-install binary version: psycopg2-binary
-
-#### Libraries suggested settings:
     numpy
     
-    psycopg2
+    psycopg2 (psycopg2-binary alternative)
     
-    tensorflow-gpu==1.14.0
+    tensorflow ==1.15.0
     
     tensorforce==0.4.3
     
@@ -42,9 +32,13 @@ install binary version: psycopg2-binary
     
     Python=3.6
     
-    mo-future=2.46 
+    mo-future=3.147
     
     moz-sql-parser==4.18
+    
+    Pillow = 8.1.0
+    
+    
     
 
 ### Postgres
