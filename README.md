@@ -108,11 +108,17 @@ install binary version: psycopg2-binary
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
-2> run queires2db.py(under porject directory)
+2> run queires2db.py(under porject directory) to get table 'queries'
 
     some hints for postgres:
       to delete a table: drop table table_name
       you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
+
+3> run main.py to make sure the rejoin repo is working.
+
+### Re-product the experiment section:
+
+- https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
       
 ### Test on TPCH data set
 
@@ -137,6 +143,3 @@ Now the plots are in ./outputs folder (default) and the model in  ./saved_model/
 `sudo python3 main.py -e 200 -g 1 -tg 5 -se 100 -r ./saved_model/group4-200/ -s ./saved_model/group5-500/`
 
 - Execute a single query `python main.py --query 3a --episodes 150`
-
-## Some experiments
-- https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
