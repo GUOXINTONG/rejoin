@@ -18,7 +18,7 @@ def backup_queries():
 
 db = Database(collect_db_info=False)
 
-cursor = db.conn.cursor()
+cursor = db.conn.cursor()  # use 'drop table queries' in postgres if you re-run this script
 q = """
 CREATE TABLE queries (
         id SERIAL PRIMARY KEY,

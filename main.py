@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
 
-from tensorforce import TensorforceError
+from tensorforce import TensorForceError
 from tensorforce.agents import Agent
 from tensorforce.execution import Runner
 from src.environment import ReJoin
@@ -91,7 +91,7 @@ def print_config(args):
 def main():
 
     args = make_args_parser()
-    # print_config(args)
+    print_config(args)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -131,13 +131,13 @@ def main():
         with open(args.agent_config, "r") as fp:
             agent_config = json.load(fp=fp)
     else:
-        raise TensorforceError("No agent configuration provided.")
+        raise TensorForceError("No agent configuration provided.")
 
     if args.network_spec is not None:
         with open(args.network_spec, "r") as fp:
             network_spec = json.load(fp=fp)
     else:
-        raise TensorforceError("No network configuration provided.")
+        raise TensorForceError("No network configuration provided.")
 
     # Set up the PPO Agent
     agent = Agent.from_spec(
@@ -165,11 +165,11 @@ def main():
                     try:
                         os.mkdir(save_dir, 0o755)
                     except OSError:
-                        raise OSError("Cannot save agent to dir {} ()".format(save_dir))
+                        raise OSError("Cannot save agent to dir {}".format(save_dir))
 
-                    r.agent.save_model(
-                        directory=args.save_agent, append_timestep=True
-                    )
+                r.agent.save_model(
+                    directory=args.save_agent, append_timestep=True
+                )
 
             logger.info(
                 "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
@@ -267,7 +267,7 @@ def main():
 
         plt.savefig(args.outputs + file + ".png")
 
-    plt.show(block=True)
+    # plt.show(block=True)
 
 
 if __name__ == "__main__":
