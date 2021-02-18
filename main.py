@@ -57,7 +57,7 @@ def make_args_parser():
         help="Maximum number of timesteps per episode",
     )
     parser.add_argument("-q", "--query", default="", help="Run specific query")
-    parser.add_argument("-s", "--save_agent", default="./model/", help="Save agent to this dir")
+    parser.add_argument("-s", "--save_agent", default="", help="Save agent to this dir")
     parser.add_argument("-r", "--restore_agent", default="", help="Restore Agent from this dir")
     parser.add_argument("-o", "--outputs", default="./outputs/", help="Check plot from this dir")
 
@@ -272,3 +272,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
+1> Train group 4 for 200 ep:  main.py -e 200 -g 1 -tg 4 -se 100 -s ./model/group4-200/
+2> Fine tune model from group 4 by training on group 6: main.py -e 500 -g 1 -tg 6 -se 100 -r ./model/group4-200/ -s ./model/group6-500/
+3> Restore saved model and test group 4: main.py -e 3 -g 1 -tg 4 -r ./model/group4-200/ --testing -o ./outputs/testing/
+4? Execute a single query python main.py --query 3a --episodes 150
+
+"""
