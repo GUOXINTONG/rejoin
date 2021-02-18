@@ -80,7 +80,7 @@ After pycharm being successfully set up, you can git clone this repo to your loc
             3>change hostname to 'localhost'
 **The last step will take a loooong time, wait for processing...** after this, download join order benchmark database part is finished. 
 
-### Run join order benchmark, query part
+### Create table for join order benchmark data set
 
 1>  Manually run two sql query 'schema.sql' and 'fkindexes.sql' (in the project, under jo-benchmark/)
 
