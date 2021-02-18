@@ -109,21 +109,13 @@ After pycharm being successfully set up, you can git clone this repo to your loc
     some hints for postgres:
       to delete a table: drop table table_name
      
-3> run main.py to make sure the rejoin repo is working.
-
 ### Re-product the experiment section:
 
+All experiments are here:
+
 - https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
-      
-### Test on TPCH data set
 
-follow https://github.com/gregrahn/tpch-kit
-
-### Run examples
-After finished all the steps above, follow below 'Some Running examples' to try training and other process.
-
-
-### Some Running examples (optional)
+Some example: (before run main.py, create a subdir under your project root dir: /saved_model/)
 
 - Train target group 4 for 200 episodes
 `sudo python3 main.py -e 200 -g 1 -tg 4 -se 100 -s ./saved_model/group4-200/`
@@ -138,3 +130,7 @@ Now the plots are in ./outputs folder (default) and the model in  ./saved_model/
 `sudo python3 main.py -e 200 -g 1 -tg 5 -se 100 -r ./saved_model/group4-200/ -s ./saved_model/group5-500/`
 
 - Execute a single query `python main.py --query 3a --episodes 150`
+
+### Test on TPCH data set
+
+follow https://github.com/gregrahn/tpch-kit
