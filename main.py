@@ -57,9 +57,9 @@ def make_args_parser():
         help="Maximum number of timesteps per episode",
     )
     parser.add_argument("-q", "--query", default="", help="Run specific query")
-    parser.add_argument("-s", "--save_agent", default="", help="Save agent to this dir")
+    parser.add_argument("-s", "--save_agent", default="./model/", help="Save agent to this dir")
     parser.add_argument("-r", "--restore_agent", default="", help="Restore Agent from this dir")
-    parser.add_argument("-o", "--outputs", default="./outputs/", help="Restore Agent from this dir")
+    parser.add_argument("-o", "--outputs", default="./outputs/", help="Check plot from this dir")
 
     parser.add_argument(
         "-t",
@@ -163,7 +163,7 @@ def main():
                 save_dir = os.path.dirname(args.save_agent)
                 if not os.path.isdir(save_dir):
                     try:
-                        os.mkdir(save_dir, 0o755)
+                        os.makedirs(save_dir)
                     except OSError:
                         raise OSError("Cannot save agent to dir {}".format(save_dir))
 
