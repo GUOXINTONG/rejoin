@@ -118,8 +118,8 @@ All experiments are here:
 Some example:
 - Train target group 4 for 200 episodes
 `sudo python3 main.py -e 200 -g 1 -tg 4 -se 100 -s ./saved_model/group4-200/`
-- (PS:To run the main.py for training if the error is related to installing .dll files, installing the Microsoft Visual C++ 2015 Redistributable Update 3 (x64 version) should fix it. link:https://www.microsoft.com/en-us/download/details.aspx?id=53587 )
-- 
+  (PS:To run the main.py for training if the error is related to installing .dll files, installing the Microsoft Visual C++ 2015 Redistributable Update 3 (x64 version) should fix it. link:https://www.microsoft.com/en-us/download/details.aspx?id=53587 )
+
 Now the plots are in ./outputs folder (default) and the model in  ./saved_model/ 
 
 - Restore saved model and test group 4 
