@@ -115,7 +115,7 @@ All experiments are here:
 
 - https://drive.google.com/open?id=1bOBtplkxfGXGRWmib4WYMotjJ47fGz2C
 
-Some example: (before run main.py, create a subdir under your project root dir: /saved_model/)
+Some example:
 
 - Train target group 4 for 200 episodes
 `sudo python3 main.py -e 200 -g 1 -tg 4 -se 100 -s ./saved_model/group4-200/`
