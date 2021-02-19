@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
 
-from tensorforce import TensorforceError
+from tensorforce import TensorForceError
 from tensorforce.agents import Agent
 from tensorforce.execution import Runner
 from src.environment import ReJoin
@@ -59,7 +59,7 @@ def make_args_parser():
     parser.add_argument("-q", "--query", default="", help="Run specific query")
     parser.add_argument("-s", "--save_agent", default="", help="Save agent to this dir")
     parser.add_argument("-r", "--restore_agent", default="", help="Restore Agent from this dir")
-    parser.add_argument("-o", "--outputs", default="./outputs/", help="Restore Agent from this dir")
+    parser.add_argument("-o", "--outputs", default="./outputs/", help="Check plot from this dir")
 
     parser.add_argument(
         "-t",
@@ -91,7 +91,7 @@ def print_config(args):
 def main():
 
     args = make_args_parser()
-    # print_config(args)
+    print_config(args)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -131,13 +131,13 @@ def main():
         with open(args.agent_config, "r") as fp:
             agent_config = json.load(fp=fp)
     else:
-        raise TensorforceError("No agent configuration provided.")
+        raise TensorForceError("No agent configuration provided.")
 
     if args.network_spec is not None:
         with open(args.network_spec, "r") as fp:
             network_spec = json.load(fp=fp)
     else:
-        raise TensorforceError("No network configuration provided.")
+        raise TensorForceError("No network configuration provided.")
 
     # Set up the PPO Agent
     agent = Agent.from_spec(
@@ -163,13 +163,13 @@ def main():
                 save_dir = os.path.dirname(args.save_agent)
                 if not os.path.isdir(save_dir):
                     try:
-                        os.mkdir(save_dir, 0o755)
+                        os.makedirs(save_dir)
                     except OSError:
-                        raise OSError("Cannot save agent to dir {} ()".format(save_dir))
+                        raise OSError("Cannot save agent to dir {}".format(save_dir))
 
-                    r.agent.save_model(
-                        directory=args.save_agent, append_timestep=True
-                    )
+                r.agent.save_model(
+                    directory=args.save_agent, append_timestep=True
+                )
 
             logger.info(
                 "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
@@ -267,8 +267,16 @@ def main():
 
         plt.savefig(args.outputs + file + ".png")
 
-    plt.show(block=True)
+    # plt.show(block=True)
 
 
 if __name__ == "__main__":
     main()
+
+"""
+1> Train group 4 for 200 ep:  main.py -e 200 -g 1 -tg 4 -se 100 -s ./model/group4-200/
+2> Fine tune model from group 4 by training on group 6: main.py -e 500 -g 1 -tg 6 -se 100 -r ./model/group4-200/ -s ./model/group6-500/
+3> Restore saved model and test group 4: main.py -e 3 -g 1 -tg 4 -r ./model/group4-200/ --testing -o ./outputs/testing/
+4? Execute a single query python main.py --query 3a --episodes 150
+
+"""

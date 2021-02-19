@@ -58,7 +58,7 @@ def get_select_clause(query_ast, relations_to_alias, alias):
 
 def construct_stmt(stmt, operator_map, relations_to_alias, alias):
 
-    # print(stmt)
+    print(stmt)
     key = list(stmt.keys())[0]
 
     if key == "and" or key == "or":  # Need to go deeper
@@ -102,16 +102,17 @@ def construct_stmt(stmt, operator_map, relations_to_alias, alias):
         elif isinstance(stmt[key][1], int):  # Integer
             rvalue = str(stmt[key][1])
 
+        elif key == 'missing' or key =='exists':
+            rvalue  = ""
         else:
             rvalue = get_alias(stmt[key][1], relations_to_alias, alias)
 
-        return (
-            get_alias(stmt[key][0], relations_to_alias, alias)
-            + " "
-            + operator_map[key]
-            + " "
-            + rvalue
-        )
+        if key == 'missing' or key =='exists':
+            query_pass_str = (get_alias(stmt[key], relations_to_alias, alias) + " " + operator_map[key])
+        else:
+            query_pass_str = (get_alias(stmt[key][0], relations_to_alias, alias) + " " + operator_map[key] + " " + rvalue)
+
+        return query_pass_str
 
 
 def where_and_or(where_ast, operator_map, relations_to_alias, alias):
@@ -167,9 +168,11 @@ def get_where_clause(query_ast, relations_to_alias, alias):
         "gte": ">=",
         "lte": "<=",
         "like": "LIKE",
-        "nlike": "NOT LIKE",
+        "not_like": "NOT LIKE",
         "in": "IN",
-        "between": "BETWEEN"
+        "between": "BETWEEN",
+        "missing": "IS NULL",
+        "exists": "IS NOT NULL"
     }  # to be filled with other possible values
 
     where_ast = query_ast["where"]
