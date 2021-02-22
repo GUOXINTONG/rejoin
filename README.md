@@ -102,12 +102,14 @@ After pycharm being successfully set up, you can git clone this repo to your loc
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
-2> run queires2db.py(under porject directory) to get table 'queries' # at line 9, change 'postgres' to your own user name
+2> run queires2db.py(under porject directory) to get table 'queries' 
 
     a> change configuration in /home/PycharmProjects/ReJOIN/config/database.py to your own account
-    b> you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
+    b> at line 9 of the script, change '-U postgres' to your own user name, such as '-U terryguo'
+    c> Suggestion: run it using terminal, it may ask you type in password of the user at the end
+    d> in postgresql you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
     some hints for postgres:
-      to delete a table: drop table table_name
+      to delete a table: drop table table_name;
      
 ### Re-product the experiment section:
 
