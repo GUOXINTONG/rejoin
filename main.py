@@ -209,7 +209,7 @@ def main():
     #
     # plt.figure(2)
     # plt.plot(runner.episode_rewards, "b.", MarkerSize=2)
-
+    args.outputs = args.save_agent + '/outputs/'
     if not os.path.exists(args.outputs):
         os.makedirs(args.outputs)
     # Plot recorded costs over all episodes
