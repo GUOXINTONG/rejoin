@@ -64,7 +64,8 @@ After pycharm being successfully set up, you can git clone this repo to your loc
     a> do 1>download *gz files
     
     b> skip 2>, directly go to https://github.com/alberanid/imdbpy, follow 'Installation' section
-    
+        It may be easier to git clone this repo instead of pip installing it.    
+
     c> before 3>, create a postgres account, follow https://dev.to/ohaleks/set-up-wsl2-postgresql-and-phoenix-liveview-on-windows-3ol5, use: sudo -u postgres createuser <your_username>  
     make sure to run the command in the directory that postgres has access to like /tmp
     (ps: need to lift the access ability, can be done later, use postgres: sudo -u postgres createdb imdbload)
@@ -78,6 +79,8 @@ After pycharm being successfully set up, you can git clone this repo to your loc
             1>here change PATH_TO_GZ_FILES to the absolute path of your downloaded gz files
             2>change username and password to your own 
             3>change hostname to 'localhost'
+            4>imdbpy2sql.py is found under the bin directory
+            5>if this gives an error, try replacing postgres with postgresql like this: python3 imdbpy2sql.py -d PATH_TO_GZ_FILES -u postgresql://username:password@hostname/imdbload
 **The last step will take a loooong time, wait for processing...** after this, download join order benchmark database part is finished. 
 
 ### Create table for join order benchmark data set
@@ -102,14 +105,17 @@ After pycharm being successfully set up, you can git clone this repo to your loc
     
     e> open fkindexes.sql, excute the sql sentences in postgres
 
-2> run queires2db.py(under porject directory) to get table 'queries' 
+2> run queries2db.py(under porject directory) to get table 'queries' 
 
     a> change configuration in /home/PycharmProjects/ReJOIN/config/database.py to your own account
     b> at line 9 of the script, change '-U postgres' to your own user name, such as '-U terryguo'
     c> Suggestion: run it using terminal, it may ask you type in password of the user at the end
     d> in postgresql you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
     some hints for postgres:
+      to change user: set user <username>;
       to delete a table: drop table table_name;
+        > note: if you can get stuck for a long time trying to drop a table, try to follow the answer from here: https://dba.stackexchange.com/questions/217593/drop-table-taking-too-long 
+    e> if you get an error with importing moz_sql_parser, try to install version 4.7.21002 of the package: pip install moz_sql_parser==4.7.21002
      
 ### Re-product the experiment section:
 
