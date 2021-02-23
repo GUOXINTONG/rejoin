@@ -156,10 +156,10 @@ def main():
 
     report_episodes = 1
 
-    def episode_finished(r):
+    def episode_finished(r, last_episode=False):
         if r.episode % report_episodes == 0:
 
-            if args.save_agent != "" and args.testing is False and r.episode == args.save_episodes:
+            if args.save_agent != "" and args.testing is False and (r.episode == args.save_episodes or last_episode):
                 save_dir = os.path.dirname(args.save_agent)
                 if not os.path.isdir(save_dir):
                     try:
@@ -171,14 +171,15 @@ def main():
                     directory=args.save_agent, append_timestep=True
                 )
 
-            logger.info(
-                "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
-            )
-            logger.info(
-                "Average of last 100 rewards: {}\n".format(
-                    sum(r.episode_rewards[-100:]) / 100
+            if not last_episode:
+                logger.info(
+                    "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
                 )
-            )
+                logger.info(
+                    "Average of last 100 rewards: {}\n".format(
+                        sum(r.episode_rewards[-100:]) / 100
+                    )
+                )
         return True
 
     logger.info(
@@ -192,7 +193,7 @@ def main():
         episode_finished=episode_finished,
         deterministic=args.testing,
     )
-
+    episode_finished(runner, last_episode=True)
     runner.close()
     logger.info("Learning finished. Total episodes: {ep}".format(ep=runner.episode))
 
@@ -278,7 +279,7 @@ if __name__ == "__main__":
 """
 1> Train group 4 for 200 ep:  main.py -e 200 -g 1 -tg 4 -se 100 -s ./model/group4-200/
 2> Fine tune model from group 4 by training on group 6: main.py -e 500 -g 1 -tg 6 -se 100 -r ./model/group4-200/ -s ./model/group6-500/
-3> Restore saved model and test group 4: main.py -e 3 -g 1 -tg 4 -r ./model/group4-200/ --testing -o ./outputs/testing/
+3> Restore saved model and test group 12 for 100 eps: main.py -e 100 -g 1 -tg 12 -r ./model/group12-1000_lr_1e-2/ --testing -o ./outputs/testing_g12_400/
 4? Execute a single query python main.py --query 3a --episodes 150
 5> group: 7, 8, 9, 10,11,12,14,17
 
