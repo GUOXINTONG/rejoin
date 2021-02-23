@@ -156,10 +156,10 @@ def main():
 
     report_episodes = 1
 
-    def episode_finished(r):
+    def episode_finished(r, last_episode=False):
         if r.episode % report_episodes == 0:
 
-            if args.save_agent != "" and args.testing is False and r.episode == args.save_episodes:
+            if args.save_agent != "" and args.testing is False and (r.episode == args.save_episodes or last_episode):
                 save_dir = os.path.dirname(args.save_agent)
                 if not os.path.isdir(save_dir):
                     try:
@@ -171,14 +171,15 @@ def main():
                     directory=args.save_agent, append_timestep=True
                 )
 
-            logger.info(
-                "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
-            )
-            logger.info(
-                "Average of last 100 rewards: {}\n".format(
-                    sum(r.episode_rewards[-100:]) / 100
+            if not last_episode:
+                logger.info(
+                    "Episode {ep} reward: {r}".format(ep=r.episode, r=r.episode_rewards[-1])
                 )
-            )
+                logger.info(
+                    "Average of last 100 rewards: {}\n".format(
+                        sum(r.episode_rewards[-100:]) / 100
+                    )
+                )
         return True
 
     logger.info(
@@ -192,7 +193,7 @@ def main():
         episode_finished=episode_finished,
         deterministic=args.testing,
     )
-
+    episode_finished(runner, last_episode=True)
     runner.close()
     logger.info("Learning finished. Total episodes: {ep}".format(ep=runner.episode))
 
