@@ -209,7 +209,9 @@ def main():
     #
     # plt.figure(2)
     # plt.plot(runner.episode_rewards, "b.", MarkerSize=2)
-    args.outputs = args.save_agent + '/outputs/'
+    if args.save_agent != "":
+        args.outputs = args.save_agent + '/outputs/'
+
     if not os.path.exists(args.outputs):
         os.makedirs(args.outputs)
     # Plot recorded costs over all episodes
@@ -278,5 +280,6 @@ if __name__ == "__main__":
 2> Fine tune model from group 4 by training on group 6: main.py -e 500 -g 1 -tg 6 -se 100 -r ./model/group4-200/ -s ./model/group6-500/
 3> Restore saved model and test group 4: main.py -e 3 -g 1 -tg 4 -r ./model/group4-200/ --testing -o ./outputs/testing/
 4? Execute a single query python main.py --query 3a --episodes 150
+5> group: 7, 8, 9, 10,11,12,14,17
 
 """

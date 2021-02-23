@@ -6,7 +6,7 @@ import os
 
 def backup_queries():
 
-    cmd = "pg_dump -h localhost -p 5432 -U postgres -W  --table='queries' " \
+    cmd = "pg_dump -h localhost -p 5432 -U terryguo -W  --table='queries' " \
           "--data-only --column-inserts imdbload > queries.sql"
     try:
         os.system(cmd)
