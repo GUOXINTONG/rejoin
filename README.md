@@ -142,3 +142,6 @@ Now the plots are in ./outputs folder (default) and the model in  ./saved_model/
 ### Test on TPCH data set
 
 follow https://github.com/gregrahn/tpch-kit
+
+follow: https://ankane.org/tpc-h, before 'Generate queries'
+
