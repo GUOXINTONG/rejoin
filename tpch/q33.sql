@@ -1,6 +1,5 @@
 select
 	o.o_orderdate as o_orderdate,
-	l_extendedprice * (1 - l_discount) as volume,
 	n2.n_name as nation
 from
 	part as p,
@@ -18,6 +17,6 @@ where
 	and o.o_custkey = c.c_custkey
 	and c.c_nationkey = n1.n_nationkey
 	and n1.n_nationkey = r.r_regionkey
-	and s_nationkey = n2.n_nationkey
+	and s.s_nationkey = n2.n_nationkey
 order by
 	o_orderdate;
