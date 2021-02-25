@@ -1,4 +1,4 @@
 PGHOST = "localhost"
 PGDATABASE = "imdbload"
-PGUSER = "terryguo"
-PGPASSWORD = "huawei1234"
+PGUSER = "fatemepsql"
+PGPASSWORD = "fatemepsql"
