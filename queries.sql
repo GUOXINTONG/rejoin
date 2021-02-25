@@ -26,7 +26,7 @@ SET row_security = off;
 -- Name: queries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: terryguo
 --
 
-SELECT pg_catalog.setval('public.queries_id_seq', 113, true);
+SELECT pg_catalog.setval('public.queries_id_seq', 10, true);
 
 
 --
