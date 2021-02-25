@@ -217,6 +217,8 @@ class ReJoin(Environment):
             self.memory[self.query["file"]]["rewards"] = [0]
             self.memory[self.query["file"]]["costs"] = []
             self.memory[self.query["file"]]["postgres_cost"] = self.query["cost"]
+        # Debug the rejoin time spending in prediction
+        # print("planning time:", self.query["planning"], '\n', "execution time:", self.query["execution"])
 
         self.state_vector = StateVector(
             self.query, self.database.tables, self.relations, self.attributes
