@@ -1,4 +1,4 @@
 PGHOST = "localhost"
-PGDATABASE = "imdbload"
+PGDATABASE = "tpch" # tpch & imdbload
 PGUSER = "terryguo"
 PGPASSWORD = "huawei1234"

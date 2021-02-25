@@ -58,7 +58,7 @@ def get_select_clause(query_ast, relations_to_alias, alias):
 
 def construct_stmt(stmt, operator_map, relations_to_alias, alias):
 
-    print(stmt)
+    #print(stmt)
     key = list(stmt.keys())[0]
 
     if key == "and" or key == "or":  # Need to go deeper
