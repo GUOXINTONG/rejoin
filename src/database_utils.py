@@ -18,6 +18,9 @@ def get_select_clause(query_ast, relations_to_alias, alias):
     select_operator_map = {
         "min": "MIN",
         "max": "MAX",
+        "count": "COUNT",
+        "sum": "SUM",
+        "avg": "AVG"
     }  # to be filled with other possible values
 
     select_stmt = query_ast["select"]
@@ -183,3 +186,25 @@ def get_where_clause(query_ast, relations_to_alias, alias):
 
     else:
         return ""
+
+def get_group_by_clause(query_ast, relations_to_alias, alias):
+    if 'groupby' in query_ast:
+        group_ast = query_ast['groupby']
+        groupby = []
+
+        if not isinstance(group_ast, (list,)):
+            group_ast = [group_ast]
+
+        for v in group_ast:
+            val = v["value"]
+            val = get_alias(val, relations_to_alias, alias)
+            groupby.append(val)
+
+        groupby_clause = " \nGROUP BY \n"
+        for i in range(len(groupby) - 1):
+            groupby_clause += groupby[i] + ", "
+        groupby_clause += groupby[len(groupby) - 1]
+        return groupby_clause
+    else:
+        return ""
+
