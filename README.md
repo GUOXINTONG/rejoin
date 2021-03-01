@@ -112,7 +112,7 @@ After pycharm being successfully set up, you can git clone this repo to your loc
     c> Suggestion: run it using terminal, it may ask you type in password of the user at the end
     d> in postgresql you may need to assgin superuser to your own account: ALTER USER your_user WITH SUPERUSER;
     some hints for postgres:
-      to change user: set user <username>;
+      to change user: set role <username>;
       to delete a table: drop table table_name;
         > note: if you can get stuck for a long time trying to drop a table, try to follow the answer from here: https://dba.stackexchange.com/questions/217593/drop-table-taking-too-long 
     e> if you get an error with importing moz_sql_parser, try to install version 4.7.21002 of the package: pip install moz_sql_parser==4.7.21002
