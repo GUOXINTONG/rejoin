@@ -291,7 +291,7 @@ class Database:
 
         select_clause = utils.get_select_clause(query_ast, relations_to_alias, alias)
         where_clause = utils.get_where_clause(query_ast, relations_to_alias, alias)
-        group_by_clause = utils.get_group_by_clause(query_ast, relations_to_alias, alias)
+        # group_by_clause = utils.get_group_by_clause(query_ast, relations_to_alias, alias)
 
         limit = ""
         if "limit" in query_ast:
@@ -300,7 +300,7 @@ class Database:
         # print("\n\nRelations to aliases: ")
         # self.print_dict(relations_to_alias)
 
-        query = select_clause + " FROM " + subq + where_clause + group_by_clause + limit
+        query = select_clause + " FROM " + subq + where_clause + limit
 
         # print(query)
         self.counter = 0
