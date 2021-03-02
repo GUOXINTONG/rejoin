@@ -6,8 +6,7 @@ import os
 
 def backup_queries():
 
-    cmd = "pg_dump -h localhost -p 5432 -U postgres -W  --table='queries' " \ 
-          "--data-only --column-inserts tpch > queries.sql" # change to tpch & imdbload and change to your user name
+    cmd = "pg_dump -h localhost -p 5432 -U postgres -W  --table='queries' --data-only --column-inserts imdbload > queries.sql" # change to tpch & imdbload and change to your user name
     try:
         os.system(cmd)
         print("Backup completed")
@@ -35,7 +34,7 @@ cursor.execute(q)
 cursor.close()
 db.conn.commit()
 
-dataset = "tpch" # change to specific dataset dir
+dataset = "jo-benchmark/queries" # change to specific dataset dir
 cwd = os.getcwd()
 files = os.listdir(os.path.join(cwd, *dataset.split("/")))
 

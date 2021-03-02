@@ -186,17 +186,19 @@ def main():
         "Starting {agent} for Environment '{env}'".format(agent=agent, env=environment)
     )
 
-    # Start training or testing
+    # Start training or testing#############################
     runner.run(
         episodes=args.episodes,
         max_episode_timesteps=args.max_timesteps,
         episode_finished=episode_finished,
         deterministic=args.testing,
     )
+
     episode_finished(runner, last_episode=True)
     runner.close()
     logger.info("Learning finished. Total episodes: {ep}".format(ep=runner.episode))
 
+######### ToDo: needed to find the last episod for converging
     def find_convergence(eps):
         last = eps[-1]
         for i in range(1, len(eps)):
@@ -223,19 +225,24 @@ def main():
         plt.figure(i)
 
         postgres_estimate = val["postgres_cost"]
-        costs = np.array(val["costs"])
-        max_val = max(costs)
-        min_val = min(costs)
+        postgres_estimate_time = val["postgres_planning_time"]
+        # costs = np.array(val["costs"])
+        planning = np.array(val["planning"])
+        # max_val = max(costs)
+        # min_val = min(costs)
+        max_val = max(planning)
+        min_val = min(planning)
+
         plt.xlabel("episode")
-        plt.ylabel("cost")
+        plt.ylabel("planning")
         plt.title(file)
         plt.scatter(
-            np.arange(len(costs)),
-            costs,
+            np.arange(len(planning)),
+            planning,
             c="g",
             alpha=0.5,
             marker=r"$\ast$",
-            label="Cost",
+            label="Planning_time",
         )
         plt.legend(loc="upper right")
         plt.scatter(
@@ -245,7 +252,7 @@ def main():
             alpha=1,
             marker=r"$\heartsuit$",
             s=200,
-            label="min cost observed=" + str(min_val),
+            label="min planning observed=" + str(min_val),
         )
         plt.scatter(
             0,
@@ -259,12 +266,12 @@ def main():
         plt.legend(loc="upper right")
         plt.scatter(
             0,
-            [postgres_estimate],
+            [postgres_estimate_time],
             c="c",
             alpha=1,
             marker=r"$\star$",
             s=200,
-            label="postgreSQL estimate=" + str(postgres_estimate),
+            label="postgreSQL estimate=" + str(postgres_estimate_time),
         )
         plt.legend(loc="upper right")
 

@@ -244,7 +244,7 @@ class Database:
         if self.conn:
             self.conn.close()
 
-    def optimizer_cost(self, query, force_order=False):
+    def optimizer_cost_first(self, query, force_order=False):
         join_collapse_limit = "SET join_collapse_limit = "
         join_collapse_limit += "1" if force_order else "8"
         query = join_collapse_limit + ";EXPLAIN (FORMAT JSON) " + query + ";"
@@ -253,6 +253,18 @@ class Database:
         rows = cursor.fetchone()
         cursor.close()
         return rows[0][0]["Plan"]["Total Cost"]
+
+    def optimizer_cost(self, query, force_order=False):
+        join_collapse_limit = "SET join_collapse_limit = "
+        join_collapse_limit += "1" if force_order else "8"
+        query = join_collapse_limit + ";EXPLAIN ANALYZE " + query + ";"
+        cursor = self.conn.cursor()
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        planning = [float(s) for s in rows[-2][0].split() if self.is_number(s)]
+        # execution = [float(s) for s in rows[-1][0].split() if self.is_number(s)]
+        cursor.close()
+        return planning[0]
 
     def get_query_time(self, query, force_order=False):
         join_collapse_limit = "SET join_collapse_limit = "

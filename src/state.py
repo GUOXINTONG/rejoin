@@ -84,6 +84,7 @@ class StateVector:
 
         for v in self.query_ast["where"]["and"]:
             for k in v:
+                #ToDo: add more to the query cases
                 if k in {"eq", "neq", "lt", "gt", "lte", "gte"}:  # examine queries to cover all cases
                     for i in range(2):
                         if isinstance(v[k][i], str):
