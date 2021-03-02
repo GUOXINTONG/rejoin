@@ -159,7 +159,7 @@ def main():
     def episode_finished(r, last_episode=False):
         if r.episode % report_episodes == 0:
 
-            if args.save_agent != "" and args.testing is False and (r.episode == args.save_episodes or last_episode):
+            if args.save_agent != "" and args.testing is False and (r.episode % args.save_episodes == 0 or last_episode):
                 save_dir = os.path.dirname(args.save_agent)
                 if not os.path.isdir(save_dir):
                     try:
