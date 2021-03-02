@@ -33,5 +33,5 @@ group by
 	c.c_address,
 	c.c_comment,
 	r.r_name,
-	o_orderdate
+	o.o_orderdate
 LIMIT 20;
