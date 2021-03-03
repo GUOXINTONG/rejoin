@@ -224,21 +224,22 @@ def main():
         i += 1
         plt.figure(i)
 
-        postgres_estimate = val["postgres_cost"]
-        postgres_estimate_time = val["postgres_planning_time"]
+        # postgres_estimate = val["postgres_cost"]
+        postgres_estimate_time = val["postgres_planning_time"] + val["postgres_execution_time"]
         # costs = np.array(val["costs"])
-        planning = np.array(val["planning"])
+        timing = np.array(val["timing"])
+
         # max_val = max(costs)
         # min_val = min(costs)
-        max_val = max(planning)
-        min_val = min(planning)
+        max_val = max(timing)
+        min_val = min(timing)
 
         plt.xlabel("episode")
-        plt.ylabel("planning")
+        plt.ylabel("planning+execution")
         plt.title(file)
         plt.scatter(
-            np.arange(len(planning)),
-            planning,
+            np.arange(len(timing)),
+            timing,
             c="g",
             alpha=0.5,
             marker=r"$\ast$",
@@ -252,7 +253,7 @@ def main():
             alpha=1,
             marker=r"$\heartsuit$",
             s=200,
-            label="min planning observed=" + str(min_val),
+            label="min timing observed=" + str(min_val),
         )
         plt.scatter(
             0,
@@ -261,7 +262,7 @@ def main():
             alpha=1,
             marker=r"$\times$",
             s=200,
-            label="max cost observed=" + str(max_val),
+            label="max time observed=" + str(max_val),
         )
         plt.legend(loc="upper right")
         plt.scatter(

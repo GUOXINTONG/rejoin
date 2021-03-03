@@ -217,8 +217,12 @@ class ReJoin(Environment):
             self.memory[self.query["file"]]["rewards"] = [0]
             self.memory[self.query["file"]]["costs"] = []
             self.memory[self.query["file"]]["planning"] = []
+            self.memory[self.query["file"]]["execution"] = []
+            self.memory[self.query["file"]]["timing"] = []
             self.memory[self.query["file"]]["postgres_cost"] = self.query["cost"]
             self.memory[self.query["file"]]["postgres_planning_time"] = self.query["planning"]
+            self.memory[self.query["file"]]["postgres_execution_time"] = self.query["execution"]
+
         # Debug the rejoin time spending in prediction
         # print("planning time:", self.query["planning"], '\n', "execution time:", self.query["execution"])
 
@@ -297,9 +301,9 @@ class ReJoin(Environment):
         )
         # cost = self.database.get_reward(constructed_query, self.phase)
         # self.memory[self.query["file"]]["costs"].append(cost)
-        planning = self.database.get_reward(constructed_query, self.phase)
-        self.memory[self.query["file"]]["planning"].append(planning)
-        reward = 1 / planning * 100000
+        timing = self.database.get_reward(constructed_query, self.phase)
+        self.memory[self.query["file"]]["timing"].append(timing)
+        reward = 1 / timing * 100000
         # reward **= 2
         # reward = math.exp(reward)
         # print(self.memory_costs)
@@ -312,7 +316,7 @@ class ReJoin(Environment):
 
         self.memory[self.query["file"]]["rewards"].append(reward)
         # print("Cost ", round(cost))
-        print("Planning", planning)
+        print("Timing", timing)
         return reward
 
     def _get_valid_actions(self):

@@ -262,9 +262,9 @@ class Database:
         cursor.execute(query)
         rows = cursor.fetchall()
         planning = [float(s) for s in rows[-2][0].split() if self.is_number(s)]
-        # execution = [float(s) for s in rows[-1][0].split() if self.is_number(s)]
+        execution = [float(s) for s in rows[-1][0].split() if self.is_number(s)]
         cursor.close()
-        return planning[0]
+        return planning[0] + execution[0]
 
     def get_query_time(self, query, force_order=False):
         join_collapse_limit = "SET join_collapse_limit = "
