@@ -14,7 +14,7 @@ import argparse
 import logging
 import sys
 
-# import time
+import time
 import os
 import json
 
@@ -65,7 +65,7 @@ def make_args_parser():
         "-t",
         "--testing",
         action="store_true",
-        default=False,
+        default=True, # False or True
         help="Test agent without learning.",
     )
     parser.add_argument('-all', '--run_all', action='store_true', default=False, help="Order queries by relations_num")
@@ -76,7 +76,7 @@ def make_args_parser():
         default=100,
         help="Save agent every x episodes",
     )
-    parser.add_argument("-p", "--phase", help="Select phase (1 or 2)", default=1)
+    parser.add_argument("-p", "--phase", help="Select phase (1 or 2)", default=4) # default=1
 
     return parser.parse_args()
 
@@ -89,7 +89,7 @@ def print_config(args):
 
 
 def main():
-
+    start_time = time.time()
     args = make_args_parser()
     print_config(args)
     logger = logging.getLogger(__name__)
@@ -224,10 +224,11 @@ def main():
 
         postgres_estimate = val["postgres_cost"]
         costs = np.array(val["costs"])
-        max_val = max(costs)
+        # max_val = max(costs)
+        mean_val = np.mean(costs)
         min_val = min(costs)
         plt.xlabel("episode")
-        plt.ylabel("cost")
+        plt.ylabel("total latency") # phase = 1: cost; phase = 2: execution; phase = 3: plan; phase = 4: total latency
         plt.title(file)
         plt.scatter(
             np.arange(len(costs)),
@@ -249,12 +250,12 @@ def main():
         )
         plt.scatter(
             0,
-            [max_val],
+            [mean_val],
             c="b",
             alpha=1,
             marker=r"$\times$",
             s=200,
-            label="max cost observed=" + str(max_val),
+            label="Mean value=" + str(mean_val),
         )
         plt.legend(loc="upper right")
         plt.scatter(
@@ -269,6 +270,8 @@ def main():
         plt.legend(loc="upper right")
 
         plt.savefig(args.outputs + file + ".png")
+    end_time = time.time()
+    print("Training takes %d seconds" %(end_time-start_time))
 
     # plt.show(block=True)
 

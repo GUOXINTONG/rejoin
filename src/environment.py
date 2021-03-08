@@ -216,9 +216,10 @@ class ReJoin(Environment):
             self.memory[self.query["file"]] = {}
             self.memory[self.query["file"]]["rewards"] = [0]
             self.memory[self.query["file"]]["costs"] = []
-            self.memory[self.query["file"]]["postgres_cost"] = self.query["cost"]
-        # Debug the rejoin time spending in prediction
-        # print("planning time:", self.query["planning"], '\n', "execution time:", self.query["execution"])
+            # self.memory[self.query["file"]]["postgres_cost"] = self.query["cost"]
+            self.memory[self.query["file"]]["postgres_cost"] = self.query["planning"] + self.query["execution"]
+
+        print("postgres planning time:", self.query["planning"], '\n', "postgres execution time:", self.query["execution"])
 
         self.state_vector = StateVector(
             self.query, self.database.tables, self.relations, self.attributes
@@ -262,7 +263,7 @@ class ReJoin(Environment):
 
         if terminal:
             final_ordering = self._get_final_ordering()
-            # print("Final Ordering:", final_ordering)
+            print("Final Ordering:", final_ordering)
             reward = self.get_reward(final_ordering)
         else:
             reward = 0
@@ -294,6 +295,7 @@ class ReJoin(Environment):
             self.state_vector.aliases,
         )
         cost = self.database.get_reward(constructed_query, self.phase)
+        # phase = 1: take cost; phase = 2: take execution time; phase = 3: take planning time; phase = others: take total latency
         self.memory[self.query["file"]]["costs"].append(cost)
         reward = 1 / cost * 100000
         # reward **= 2
@@ -307,7 +309,7 @@ class ReJoin(Environment):
         reward = (reward - mean) / (std + 0.1)
 
         self.memory[self.query["file"]]["rewards"].append(reward)
-        print("Cost: ", round(cost))
+        # print("Cost: ", round(cost))
         return reward
 
     def _get_valid_actions(self):

@@ -461,7 +461,12 @@ class Database:
     def get_reward(self, query, phase):
         if phase == 1:
             return self.optimizer_cost(query, True)  # Get Cost Model's Estimate
-        return self.get_query_time(query, True)[1]  # Get actual query-execution latency
+        elif phase == 2:
+            return self.get_query_time(query, True)[1] # Get actual query-execution latency
+        elif phase == 3:
+            return self.get_query_time(query, True)[0] # Get actual query-planning latency
+        else:
+            return self.get_query_time(query, True)[0] + self.get_query_time(query, True)[1] # Get total latency
 
     def print_dict(self, d):
         for key in d:
