@@ -145,3 +145,6 @@ follow https://github.com/gregrahn/tpch-kit
 
 follow: https://ankane.org/tpc-h, before 'Generate queries'
 
+
+
+https://github.com/haochending/benchmarks/tree/master/tpc-ds-2.4/openLookeng
